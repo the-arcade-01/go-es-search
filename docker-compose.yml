@@ -1,8 +1,0 @@
-version: "3.8"
-
-services:
-  app:
-    container_name: "go-es-search"
-    build: .
-    ports:
-      - "5000:5000"
