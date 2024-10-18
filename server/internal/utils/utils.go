@@ -4,6 +4,9 @@ package utils
 const (
 	HEALTH = "/health"
 	GREET  = "/greet"
+
+	PRODUCTS_BASE      = "/products"
+	PRODUCTS_GET_BY_ID = "/{productId}"
 )
 
 // ENV

@@ -21,6 +21,11 @@ func (server *Server) MountMiddlewares() {
 func (server *Server) MountHandlers() {
 	service := service.NewAPIService()
 	server.Router.Get(utils.GREET, service.Greet)
+
+	productRouter := chi.NewRouter()
+	productRouter.Get(utils.PRODUCTS_GET_BY_ID, service.GetProductById)
+
+	server.Router.Mount(utils.PRODUCTS_BASE, productRouter)
 }
 
 func CreateServer() *Server {

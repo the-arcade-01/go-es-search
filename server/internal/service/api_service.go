@@ -1,8 +1,11 @@
 package service
 
 import (
+	"log"
 	"net/http"
+	"strconv"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/the-arcade-01/go-es-search/server/internal/db/dao"
 	response "github.com/the-arcade-01/go-es-search/server/internal/models/response"
 )
@@ -31,6 +34,16 @@ func (api APIService) PutProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 func (api APIService) GetProductById(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "productId")
+	productId, err := strconv.Atoi(id)
+	if err != nil {
+		return
+	}
+	result, err := api.inventoryDao.GetProductById(r.Context(), productId)
+	if err != nil {
+		return
+	}
+	log.Println("[GetProductById]", result)
 }
 
 func (api APIService) Search(w http.ResponseWriter, r *http.Request) {

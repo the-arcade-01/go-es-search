@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"context"
 	"log"
 	"sync"
 
@@ -10,10 +11,9 @@ import (
 )
 
 type InventoryDao interface {
-	CreateProduct(product *db.ProductDB) error
-	GetProduct(productId int) (*db.ProductDB, error)
-	UpdateProduct(product *db.ProductDB) error
-	DeleteProduct(productId int) error
+	CreateProduct(ctx context.Context, product *db.ProductDB) (string, error)
+	GetProductById(ctx context.Context, productId int) (*db.ProductDB, error)
+	DeleteProduct(ctx context.Context, productId int) error
 }
 
 var (
